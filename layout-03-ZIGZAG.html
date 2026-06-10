@@ -3,13 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>02 colonnes</title>
+		<title>03 zigzag</title>
 
 		<link rel="stylesheet" href="rsrc/style.css"> <!-- design, thème général -->
 		<style media="screen">
 
 			/* Fonction essentielle */
-			section{ display: flex; }
+			section:nth-of-type(even) { flex-direction: row-reverse; }
 
 			/*	-	-	-	-	-	-	-	-	-	-	-	-	-	-		-	-	-	-*/
 
@@ -17,14 +17,14 @@
 			/* bling */
 			
 			section {
-				/* display: flex; */
+				display: flex;
 				align-items: flex-start;
 				gap: 1rem;
 				margin: 4rem 0;
 				border-top: 1px solid grey;
 				padding-top: 1rem;
 			}
-			section::nth-of-type(even){flex-direction: row-reverse;}
+
 
 			p { max-width: 60ch; }
 
@@ -44,8 +44,8 @@
 	</head>
 	<body>
 		<div>
-			<h4>Fonction essentiel ZIG ZAG</h4>
-			<code> section { display: flex; } </code>
+			<h4>Fonction essentiel</h4>
+			<code> section:nth-of-type(even) { flex-direction: row-reverse; } </code>
 		</div>
 	
 		<section>
@@ -88,5 +88,10 @@
 			</div>
 		</section>
 
+		<nav id="siteNav">
+			<a href="layout-02-colonnes.html">prev</a>
+			<a href="index.html">home</a>
+			<a href="layout-04-quatre.html">next</a>
+		</nav>
 	</body>
 </html>

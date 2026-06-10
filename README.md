@@ -1,3 +1,3 @@
 # every-layout
-
-https://vladtplsch.github.io/every-layout/
+ 
+https://adriencater.github.io/every-layout/

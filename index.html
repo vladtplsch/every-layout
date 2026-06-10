@@ -1,16 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>every layout</title>
-	<link rel="stylesheet" href="rsrc/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Every Layout</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f6f3;
+      --ink: #1a1a1a;
+      --muted: #888;
+      --border: #ddd;
+      --accent: #1a1a1a;
+      --code-bg: #eeecea;
+      --font-display: 'Georgia', serif;
+      --font-body: system-ui, sans-serif;
+      --font-mono: 'Courier New', monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── En-tête ── */
+    header {
+      margin-bottom: 4rem;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ── Compteur global ── */
+    ol { list-style: none; counter-reset: layout-counter; }
+
+    /* ── Carte layout ── */
+    li {
+      counter-increment: layout-counter;
+      display: grid;
+      grid-template-columns: 10rem 1fr;
+      gap: 2rem;
+      align-items: start;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    li:last-child { border-bottom: 1px solid var(--border); }
+
+    /* ── Vignette ── */
+    .vignette {
+      position: relative;
+    }
+
+    .vignette a {
+      display: block;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .vignette a img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s;
+    }
+
+    .vignette a:hover img { opacity: 0.75; }
+
+    .vignette::before {
+      content: counter(layout-counter, decimal-leading-zero);
+      position: absolute;
+      top: -0.6rem;
+      left: -0.6rem;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0.1rem 0.35rem;
+      letter-spacing: 0.05em;
+      z-index: 1;
+    }
+
+    /* ── Description ── */
+    .description { padding-top: 0.25rem; }
+
+    .description h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .description p {
+      font-size: 0.9rem;
+      color: #444;
+      max-width: 55ch;
+      margin-bottom: 0.75rem;
+    }
+
+    code {
+      display: inline-block;
+      background: var(--code-bg);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 2px;
+      color: var(--ink);
+      margin-top: 0.25rem;
+    }
+
+    .description a {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+
+    .description a:hover { opacity: 0.5; }
+
+    /* ── Responsive ── */
+    @media (max-width: 560px) {
+      li { grid-template-columns: 1fr; gap: 1rem; }
+      .vignette a { max-width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .vignette a img, .description a { transition: none; }
+    }
+  </style>
 </head>
 <body>
-	<h1>EVERY LAYOUT</h1>
-	
-	<a href="layout-01-simple.html">
-		<img src="vignettes/layout-01-simple.png" alt="">
-	</a>
+
+  <header>
+    <h1>Every Layout</h1>
+    <p>Une collection de mises en page CSS essentielles.</p>
+  </header>
+
+  <ol>
+
+    <li>
+      <div class="vignette">
+        <a href="layout-01-simple.html">
+          <img src="vignettes/layout-01-simple.png" alt="Aperçu layout page simple">
+        </a>
+      </div>
+      <div class="description">
+        <h3>Une simple page de texte.</h3>
+        <p>Fonction essentielle pour centrer et limiter la largeur d'une colonne de lecture.</p>
+        <code>body { max-width: 30rem; margin: auto; }</code>
+        <br>
+        <a href="layout-01-simple.html">Voir le layout →</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="vignette">
+        <a href="layout-02-colonnes.html">
+          <img src="vignettes/layout-02-colonnes.png" alt="Aperçu layout deux colonnes">
+        </a>
+      </div>
+      <div class="description">
+        <h3>Deux colonnes.</h3>
+        <p>Flexbox place les éléments côte à côte en une ligne.</p>
+        <code>section { display: flex; }</code>
+        <br>
+        <a href="layout-02-colonnes.html">Voir le layout →</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="vignette">
+        <a href="layout-03-zigzag.html">
+          <img src="vignettes/layout-03-zigzag.png" alt="Aperçu layout zigzag">
+        </a>
+      </div>
+      <div class="description">
+        <h3>Le zigzag — deux colonnes en alternance.</h3>
+        <p>Les sections paires inversent l'ordre des colonnes via <code>row-reverse</code>.</p>
+        <code>section:nth-of-type(even) { flex-direction: row-reverse; }</code>
+        <br>
+        <a href="layout-03-zigzag.html">Voir le layout →</a>
+      </div>
+    </li>
+
+    <li>
+      <div class="vignette">
+        <a href="layout-04-quatre.html">
+          <img src="vignettes/layout-04-quatre-colonnes.png" alt="Aperçu layout quatre colonnes">
+        </a>
+      </div>
+      <div class="description">
+        <h3>Quatre colonnes.</h3>
+        <p>Flex sur le body distribue les enfants en colonnes égales.</p>
+        <code>body { display: flex; }</code>
+        <br>
+        <a href="layout-04-quatre.html">Voir le layout →</a>
+      </div>
+    </li>
+
+  </ol>
+
 </body>
-</html
+</html>
